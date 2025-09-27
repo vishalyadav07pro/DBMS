@@ -1,0 +1,56 @@
+-- 1. Create Library table to store which student borrowed which book
+CREATE TABLE Library (
+    LibraryID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID INT NOT NULL,
+    BookID INT NOT NULL,
+    BorrowDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+);
+
+-- 2. Insert sample data (students borrowing books)
+INSERT INTO Library (StudentID, BookID, BorrowDate, ReturnDate) VALUES
+(1, 1, '2025-09-01', '2025-09-10'),
+(2, 2, '2025-09-03', '2025-09-12'),
+(1, 3, '2025-09-05', NULL),
+(3, 4, '2025-09-07', NULL),
+(2, 5, '2025-09-09', NULL);
+
+-- 1. Show which student borrowed which book (Equi Join)
+SELECT 
+    s.StudentID,
+    CONCAT(s.FirstName, ' ', s.LastName) AS StudentName,
+    b.BookName,
+    b.Author,
+    b.Price,
+    l.BorrowDate,
+    l.ReturnDate
+FROM Library l
+INNER JOIN Students s ON l.StudentID = s.StudentID
+INNER JOIN Books b ON l.BookID = b.BookID;
+
+SELECT 
+    s.StudentID,
+    CONCAT(s.FirstName, ' ', s.LastName) AS StudentName,
+    b.BookName
+FROM Students s
+LEFT JOIN Library l ON s.StudentID = l.StudentID
+LEFT JOIN Books b ON l.BookID = b.BookID;
+SELECT 
+    b.BookID,
+    b.BookName,
+    CONCAT(s.FirstName, ' ', s.LastName) AS StudentName
+FROM Books b
+RIGHT JOIN Library l ON b.BookID = l.BookID
+RIGHT JOIN Students s ON l.StudentID = s.StudentID;
+
+SELECT 
+    s1.FirstName AS Student1,
+    s2.FirstName AS Student2,
+    b.BookName
+FROM Library l1
+JOIN Library l2 ON l1.BookID = l2.BookID AND l1.StudentID < l2.StudentID
+JOIN Students s1 ON l1.StudentID = s1.StudentID
+JOIN Students s2 ON l2.StudentID = s2.StudentID
+JOIN Books b ON l1.BookID = b.BookID;
