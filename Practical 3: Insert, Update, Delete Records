@@ -1,0 +1,26 @@
+-- 1. Insert a single record
+INSERT INTO Students (FirstName, LastName, Gender, DOB, City, State, Phone, Email, Stream, AdmissionDate)
+VALUES ('Aarav', 'Sharma', 'Male', '2005-02-15', 'Mumbai', 'Maharashtra', '9876543210', 'aarav.sharma@example.com', 'Science', '2023-07-01');
+
+-- 2. Insert multiple records
+INSERT INTO Students (FirstName, LastName, Gender, DOB, City, State, Phone, Email, Stream, AdmissionDate)
+VALUES
+('Isha', 'Patel', 'Female', '2004-11-20', 'Ahmedabad', 'Gujarat', '9876543211', 'isha.patel@example.com', 'Commerce', '2023-07-02'),
+('Rohan', 'Mehta', 'Male', '2005-05-12', 'Delhi', 'Delhi', '9876543212', 'rohan.mehta@example.com', 'Arts', '2023-07-03'),
+('Priya', 'Reddy', 'Female', '2004-08-18', 'Hyderabad', 'Telangana', '9876543213', 'priya.reddy@example.com', 'Science', '2023-07-04');
+
+-- 3. Update a student’s city
+UPDATE Students SET City='Pune' WHERE StudentID=1;
+
+-- 4. Update multiple students’ stream
+UPDATE Students SET Stream='Arts' WHERE City='Delhi';
+
+-- 5. Delete a student by ID
+DELETE FROM Students WHERE StudentID=3;
+
+-- 6. Delete all students from Arts stream
+DELETE FROM Students WHERE Stream='Arts';
+
+-- 7. Insert courses
+INSERT INTO Courses (CourseName, Department, Credits)
+VALUES ('Physics', 'Science', 4), ('Accounting', 'Commerce', 3), ('History', 'Arts', 3);
