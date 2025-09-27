@@ -1,0 +1,20 @@
+-- 1. Select all student records
+SELECT * FROM Students;
+
+-- 2. Select students from Mumbai
+SELECT FirstName, LastName FROM Students WHERE City='Mumbai';
+
+-- 3. Count total number of students
+SELECT COUNT(*) AS TotalStudents FROM Students;
+
+-- 4. Find average credits of all courses
+SELECT AVG(Credits) AS AvgCredits FROM Courses;
+
+-- 5. Find maximum credits offered in any course
+SELECT MAX(Credits) AS MaxCredits FROM Courses;
+
+-- 6. Find minimum DOB to get the oldest student
+SELECT MIN(DOB) AS OldestStudentDOB FROM Students;
+
+-- 7. Count students in each stream
+SELECT Stream, COUNT(*) AS Total FROM Students GROUP BY Stream;
