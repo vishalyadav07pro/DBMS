@@ -1,0 +1,20 @@
+1. Display today’s date
+SELECT CURDATE() AS Today;
+
+-- 2. Find the year of birth of each student
+SELECT FirstName, YEAR(DOB) AS BirthYear FROM Students;
+
+-- 3. Calculate age of each student
+SELECT FirstName, TIMESTAMPDIFF(YEAR, DOB, CURDATE()) AS Age FROM Students;
+
+-- 4. Concatenate first and last names
+SELECT CONCAT(FirstName, ' ', LastName) AS FullName FROM Students;
+
+-- 5. Display student names in uppercase
+SELECT UPPER(FirstName) AS UpperName FROM Students;
+
+-- 6. Show length of each student’s first name
+SELECT FirstName, LENGTH(FirstName) AS NameLength FROM Students;
+
+-- 7. Round credits divided by 3 for each course
+SELECT CourseName, ROUND(Credits/3,2) AS RoundedValue FROM Courses;
