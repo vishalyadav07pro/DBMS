@@ -1,0 +1,65 @@
+USE FYStudentsDB;
+SELECT * FROM Students;
+-- 1. Columnar View (specific columns)
+CREATE VIEW Contact_Details AS
+SELECT 
+StudentID,
+concat(firstName," ",Lastname) as 'Name',
+phone,email,AdmissionDate
+FROM Students;
+select * from Contact_details;
+
+UPDATE Students SET LastName = 'Mehta' WHERE StudentID = 1;
+
+-- 2. Row-wise View (filter rows)
+CREATE VIEW science_students AS
+SELECT * FROM Students WHERE Stream='Science';
+
+Select * from Science_students;
+
+-- 3. Subset View Display's Some rows and columns.
+Create View Mumbai_Students_Data AS
+SELECT 
+StudentID,
+concat(firstName," ",Lastname) as 'Name',
+phone,email,AdmissionDate
+FROM Students where city = 'Mumbai';
+
+Select * from Mumbai_Students_Data;
+-- 4. Query views and droping view.
+SELECT * FROM Contact_Details;
+SELECT * FROM science_students;
+SELECT * FROM Mumbai_Students_Data;
+USE FYStudentsDB;
+-- Indexes
+-- 1. Create Books table without PK
+CREATE TABLE Books (
+    BookID INT NOT NULL,
+    BookName VARCHAR(100) NOT NULL,
+    Author VARCHAR(50) NOT NULL,
+    Price DECIMAL(7,2) NOT NULL
+);
+
+INSERT INTO Books (BookID, BookName, Author, Price) VALUES
+(101, 'Introduction to SQL', 'John Smith', 450.50),
+(102, 'Database Systems', 'Alice Johnson', 550.00),
+(103, 'Python Programming', 'Robert Martin', 600.75),
+(104, 'Data Structures', 'Emily Davis', 500.25),
+(105, 'Web Development', 'Michael Brown', 399.99);
+
+select * from Books;
+
+CREATE INDEX Top_Rated ON Books(Price DESC);
+
+select * from Books;
+
+-- 2. Create a UNIQUE index on Price (simulate clustered index)
+ALTER TABLE Books ADD UNIQUE KEY idx_price(Price);
+
+-- 3. Show table creation including indexes
+SHOW CREATE TABLE Books
+
+
+
+
+
