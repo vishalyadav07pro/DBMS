@@ -1,0 +1,20 @@
+-- 1. Add a new column BloodGroup to Students table
+ALTER TABLE Students ADD BloodGroup VARCHAR(5);
+
+-- 2. Modify column datatype of Phone
+ALTER TABLE Students MODIFY Phone VARCHAR(20);
+
+-- 3. Drop an unnecessary column
+ALTER TABLE Students DROP COLUMN BloodGroup;
+
+-- 4. Rename Students table
+RENAME TABLE Students TO FY_Students;
+
+-- 5. Truncate all records in FY_Students
+TRUNCATE TABLE FY_Students;
+
+-- 6. Drop FY_Students table permanently
+DROP TABLE FY_Students;
+
+-- 7. Rename Courses table to Subjects
+RENAME TABLE Courses TO Subjects;
