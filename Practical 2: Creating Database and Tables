@@ -1,0 +1,44 @@
+-- 1. Show all databases
+SHOW DATABASES;
+
+-- 2. Create a new database
+CREATE DATABASE FYStudentsDB;
+
+-- 3. Select the database
+USE FYStudentsDB;
+
+-- 4. Create Students table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    DOB DATE NOT NULL,
+    City VARCHAR(50) NOT NULL,
+    State VARCHAR(50) NOT NULL,
+    Phone VARCHAR(15) UNIQUE,
+    Email VARCHAR(100) UNIQUE,
+    Stream VARCHAR(50) NOT NULL,
+    AdmissionDate DATE NOT NULL
+);
+
+-- 5. Create Courses table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseName VARCHAR(100) NOT NULL,
+    Department VARCHAR(50) NOT NULL,
+    Credits INT CHECK (Credits > 0)
+);
+
+-- 6. Create Enrollments table
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID INT NOT NULL,
+    CourseID INT NOT NULL,
+    Semester VARCHAR(10) NOT NULL,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- 7. View all tables in the database
+SHOW TABLES;
